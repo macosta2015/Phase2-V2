@@ -18,125 +18,139 @@ const { performRightClickOptionByTitle } = require('./components/performRightCli
 (async () => {
     try {
 
-         // Launch browser and navigate to the document
-         const newPage = await launchBrowserAndNavigateToDocument(); // Ensure this returns a newPage object
+        // Launch browser and navigate to the document
+        const newPage = await launchBrowserAndNavigateToDocument(); // Ensure this returns a newPage object
 
-         // NEW SKETCH
-         // await performTest(newPage);
- 
-         // Adding extrude function to the code
+        // NEW SKETCH
+        // await performTest(newPage);
+
+        // Adding extrude function to the code
         //ORIGINAL GOOD  const desiredIndex = 5;
-        const desiredIndex = 7;
-         await clickButtonByIndex(newPage, desiredIndex);
- 
-         // Right-click option
+        const desiredIndex = 6;
+        await clickButtonByIndex(newPage, desiredIndex);
+
+        // Right-click option
         // const selector = 'div[data-id="Dg4JdGx6jlZTm4XD"]'; // Replace with the appropriate selector
         // const title = '(1) Initial Sketch'; // Replace with the desired title
-        const selector = 'div[data-id="AJC+8X/uU1MWWXEK"]'; // Replace with the appropriate selector
-        const title = '(3) Extrude Sketch(1.03) did not regenerate properly: Select a sketch plane.'; // Replace with the desired title
- 
-         // Wait for user input
-         console.log("AAAAAAAAAA");
-         await waitForEnter();
-         console.log("BBBBBBBBBB");
- 
-         // Perform right-click and handle options
-        //  console.log('Waiting 10 seconds.');
-        //  await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
- 
-         // Perform right-click on the specified element
-         console.log('Right-clicking on the specified element.');
-         const editOptions3 = await performRightClickOptionByTitle(newPage, selector, title);
-         console.log(editOptions3);
- 
- 
-         console.log("CCCCCCCCCC");
-         await waitForEnter();
-         console.log("DDDDDDDDDD");
+        // const selector = 'div[data-id="AJC+8X/uU1MWWXEK"]'; // Replace with the appropriate selector
+        // const title = '(3) Extrude Sketch(1.03) did not regenerate properly: Select a sketch plane.'; // Replace with the desired title
+        const selector = 'div[data-id="XgmGAQ7RqnVg1wa8"]'; // Replace with the appropriate selector
+        const title = '(2)Extrude1(4.00) did not regenerate properly: Select face or sketch region to extrude.'; // Replace with the desired title
 
+
+        console.log("AAAAAAAAAA");
+        await waitForEnter();
+        console.log("BBBBBBBBBB");
+
+
+        // Perform right-click on the specified element
+        console.log('Right-clicking on the specified element.');
+        const editOptions3 = await performRightClickOptionByTitle(newPage, selector, title);
+        console.log(editOptions3);
+
+
+        console.log("CCCCCCCCCC");
+        await waitForEnter();
+        console.log("DDDDDDDDDD");
+
+
+        // Perform the edit function
+        console.log('editIntoSketchFunction')
+        editIntoSketchFunction(editOptions3, newPage);
+
+
+        console.log("EEEEEEEEEE");
+        await waitForEnter();
+        console.log("FFFFFFFFFF");
+
+
+
+        // Perform the edit function
+        console.log('performRightClickOptionByTitle')
+        editIntoSketchFunction(editOptions3, newPage);
+
+        console.log("GGGGGGGGGGGG");
+        await waitForEnter();
+        console.log("HHHHHHHHHH");
 
         // Use the retrieved options for further actions (e.g., copySketchFunction)
         console.log('copySketchFunction')
         copySketchFunction(editOptions3, newPage);
- 
-
-         // Select sketch to click or unclick
-         console.log('Waiting 10 seconds.');
-         await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
-         await newPage.evaluate(() => {
-             const thirdButton = document.querySelectorAll('.os-list-item-name')[5];
-             if (thirdButton) {
-                 thirdButton.click();
-                 thirdButton.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-             } else {
-                 console.error('Third button not found.');
-             }
-         });
-         console.log("Third button clicked and scrolled into view.");
- 
-
-         console.log("DDDDDDDDDDD");
-         await waitForEnter();
-         console.log("EEEEEEEEEEE");
-
-         
-         // Select sketch to click or unclick again
-         console.log('Waiting 10 seconds.');
-         await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
-         await newPage.evaluate(() => {
-             const thirdButton = document.querySelectorAll('.os-list-item-name')[5];
-             if (thirdButton) {
-                 thirdButton.click();
-                 thirdButton.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-             } else {
-                 console.error('Third button not found.');
-             }
-         });
-         console.log("Third button clicked and scrolled into view again.");
- 
-         console.log("HHHHHHHHHHHHHH");
-         // Edit operation
-         console.log('Waiting 10 seconds.');
-         await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
- 
-         const desiredIndex3 = 7; // Or any other desired index
-         await clickButtonByIndex(newPage, desiredIndex3);
- 
-         console.log('Waiting 10 seconds before editing.');
-         await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
- 
-         const selector3 = 'div[data-id="AJC+8X/uU1MWWXEK"]'; // Replace with the appropriate selector
-         const title3 = 'Second Sketch'; // Replace with the desired title
-         const editOptions4 = await performRightClickOptionByTitle(newPage, selector3, title3);
-         console.log(editOptions4);
- 
-         // Perform the edit function
-         console.log('editIntoSketchFunction')
-         editIntoSketchFunction(editOptions4, newPage);
- 
-         console.log('Waiting 40 seconds after edit.');
-         await new Promise(resolve => setTimeout(resolve, 40000)); // Wait for 40 seconds
-         console.log('AFTER THE CODE RUNS.');
- 
-         console.log("IIIIIIIIIIIIIII");
- 
-    
 
 
+        // Select sketch to click or unclick
+        console.log('Waiting 10 seconds.');
+        await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
+        await newPage.evaluate(() => {
+            const thirdButton = document.querySelectorAll('.os-list-item-name')[5];
+            if (thirdButton) {
+                thirdButton.click();
+                thirdButton.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+            } else {
+                console.error('Third button not found.');
+            }
+        });
+        console.log("Third button clicked and scrolled into view.");
 
 
-        console.log("JJJJJJJJJJJJJJ")
+        console.log("GGGGGGGGGG");
+        await waitForEnter();
+        console.log("HHHHHHHHHH");
+
+
+        // Select sketch to click or unclick again
+        console.log('Waiting 10 seconds.');
+        await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
+        await newPage.evaluate(() => {
+            const thirdButton = document.querySelectorAll('.os-list-item-name')[5];
+            if (thirdButton) {
+                thirdButton.click();
+                thirdButton.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+            } else {
+                console.error('Third button not found.');
+            }
+        });
+        console.log("Third button clicked and scrolled into view again.");
+
+        console.log("IIIIIIIIIII");
+        // Edit operation
+        console.log('Waiting 10 seconds.');
+        await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
+
+        const desiredIndex3 = 7; // Or any other desired index
+        await clickButtonByIndex(newPage, desiredIndex3);
+
+        console.log('Waiting 10 seconds before editing.');
+        await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
+
+        const selector3 = 'div[data-id="AJC+8X/uU1MWWXEK"]'; // Replace with the appropriate selector
+        const title3 = 'Second Sketch'; // Replace with the desired title
+        const editOptions4 = await performRightClickOptionByTitle(newPage, selector3, title3);
+        console.log(editOptions4);
+
+        // Perform the edit function
+        console.log('editIntoSketchFunction')
+        editIntoSketchFunction(editOptions4, newPage);
+
+        console.log('Waiting 40 seconds after edit.');
+        await new Promise(resolve => setTimeout(resolve, 40000)); // Wait for 40 seconds
+        console.log('AFTER THE CODE RUNS.');
+
+        console.log("JJJJJJJJJJJJJ");
+
+
+        console.log("KKKKKKKKKKKKK")
         ////////////////////
         await waitForEnter();
         console.log('USER CLICKED ENTER')
-        console.log("KKKKKKKKKKKK")
+        console.log("LLLLLLLLLLLLLL")
         ////////////////////
         await searchAndClickTransform(newPage);
 
 
 
         console.log('After waiting for the transform function')
-        console.log("LLLLLLLLLLLL")
+        console.log("MMMMMMMMMMMM")
 
 
         //         // //RENAME
@@ -171,7 +185,7 @@ const { performRightClickOptionByTitle } = require('./components/performRightCli
         ////////////////////
         await waitForEnter();
         ////////////////////
-        console.log("MMMMMMMMMM")
+        console.log("NNNNNNNNNNNN")
 
 
 
@@ -193,7 +207,7 @@ const { performRightClickOptionByTitle } = require('./components/performRightCli
         // const desiredOption = 'Copy sketch'; //TYPE WHICH EDIT OPTION YOU WANT TO CHOSE
         console.log('copySketchFunction')
         copySketchFunction(editOptions5, newPage);
-        console.log("NNNNNNNNNNNN")
+        console.log("OOOOOOOOOOOOO")
 
 
 
@@ -202,7 +216,7 @@ const { performRightClickOptionByTitle } = require('./components/performRightCli
         ////////////////////
         await waitForEnter();
         ////////////////////
-        console.log("OOOOOOOOOOOOOO")
+        console.log("PPPPPPPPPPP")
 
 
 
@@ -229,7 +243,7 @@ const { performRightClickOptionByTitle } = require('./components/performRightCli
 
 
 
-        console.log("PPPPPPPPP")
+        console.log("QQQQQQQQQQQ")
         // RIGHT CLICK
         //ALL THE FOLLOWING CODE NEEDS TO GO TOGETHER
         console.log('pasteIntoSketchFunction');
@@ -255,12 +269,12 @@ const { performRightClickOptionByTitle } = require('./components/performRightCli
         pasteIntoSketchFunction(editOptions8, newPage);
         await new Promise(resolve => setTimeout(resolve, 40000)); // Wait for 10 seconds
         console.log('Waited for 40 seconds.'); console.log('AFTER THE CODE RUNS.');
-        console.log("QQQQQQQQQQ")
+        console.log("RRRRRRRRRR")
 
 
 
 
-        console.log("RRRRRRRRRRRRRRRRR")
+        console.log("SSSSSSSSSS")
         //SELECT SKETCH TO CLICK OR UNCLICK, THIS CODE IS REALLY IMPORTANT
         console.log('Waiting 10 seconds.');
         console.log('SELECTING ITEM 5 ON THE LIST.');

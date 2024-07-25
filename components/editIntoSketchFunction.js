@@ -1,52 +1,35 @@
+// editIntoSketchFunction.js
 async function editIntoSketchFunction(editOptions1, newPage) {
     try {
-        const desiredOption2 = 'Edit…'; // TYPE WHICH EDIT OPTION YOU WANT TO CHOSE
-        console.log('Desired rename option:', desiredOption2);
-        await new Promise(resolve => setTimeout(resolve, 5000));
-        console.log('Waiting for 5 seconds...');
+        const desiredOption2 = 'Edit…'; // The desired option to choose
+        console.log('Desired edit option:', desiredOption2);
 
-        console.log('Searching for index of desired option...');
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        // Find the index of the desired option
         const desiredOptionIndex = editOptions1.indexOf(desiredOption2);
         console.log('Index of desired option:', desiredOptionIndex);
-        await new Promise(resolve => setTimeout(resolve, 5000));
-        console.log('Waiting for 5 seconds...');
 
         if (desiredOptionIndex !== -1) {
-            console.log('Desired rename option found.');
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            console.log('Desired edit option found.');
 
-            console.log('Evaluating option element... ', desiredOption2);
+            // Evaluate the desired option element in the context menu
             const renameOptionElement = await newPage.evaluateHandle((index) => {
                 const menuItems = document.querySelectorAll('.context-menu-item-span');
                 return menuItems[index];
             }, desiredOptionIndex);
-            await new Promise(resolve => setTimeout(resolve, 10000));
-            console.log('Waiting for 5 seconds...');
 
             if (renameOptionElement) {
-                console.log('Option element found.', desiredOption2);
-                await new Promise(resolve => setTimeout(resolve, 10000));
-                console.log('Waiting for 10 seconds...');
+                console.log('Option element found:', desiredOption2);
+
+                // Click on the desired option element
                 await renameOptionElement.click();
-                console.log('Waiting for 10 seconds...');
-                await new Promise(resolve => setTimeout(resolve, 10000));
                 console.log(`Clicked on ${desiredOption2} option element.`);
-                await new Promise(resolve => setTimeout(resolve, 10000));
-                console.log('Waiting for 10 seconds...');
-                await new Promise(resolve => setTimeout(resolve, 10000));
             } else {
                 console.error(`${desiredOption2} option element not found.`);
-                await new Promise(resolve => setTimeout(resolve, 5000));
             }
         } else {
             console.error(`${desiredOption2} option not found.`);
-            await new Promise(resolve => setTimeout(resolve, 5000));
         }
-        console.log('Waiting for 5 seconds...');
-        await new Promise(resolve => setTimeout(resolve, 5000));
-        console.log('Waiting 10 seconds.');
-        await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
+
         console.log('Function fully resolved.');
     } catch (error) {
         console.error('An error occurred:', error);

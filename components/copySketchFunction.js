@@ -1,50 +1,39 @@
+// copySketchFunction.js
 async function copySketchFunction(editOptions3, newPage) {
-    const desiredOption = 'Copy sketch'; //TYPE WHICH EDIT OPTION YOU WANT TO CHOSE
+    try {
+        const desiredOption = 'Copy sketch'; // The desired option to choose
+        console.log('Desired option:', desiredOption);
 
-    console.log('Desired rename option:', desiredOption);
-    await new Promise(resolve => setTimeout(resolve, 5000));
+        // Find the index of the desired option
+        const desiredOptionIndex = editOptions3.indexOf(desiredOption);
+        console.log('Index of desired option:', desiredOptionIndex);
 
-    console.log('Searching for index of desired option...');
-    await new Promise(resolve => setTimeout(resolve, 5000));
-    const desiredOptionIndex = editOptions3.indexOf(desiredOption);
-    console.log('Index of desired option:', desiredOptionIndex);
-    await new Promise(resolve => setTimeout(resolve, 5000));
+        if (desiredOptionIndex !== -1) {
+            console.log('Desired option found.');
 
-    if (desiredOptionIndex !== -1) {
-        console.log('Desired rename option found.');
-        await new Promise(resolve => setTimeout(resolve, 5000));
+            // Evaluate the desired option element in the context menu
+            const optionElement = await newPage.evaluateHandle((index) => {
+                const menuItems = document.querySelectorAll('.context-menu-item-span');
+                return menuItems[index];
+            }, desiredOptionIndex);
 
-        console.log('Evaluating option element... ', desiredOption);
-        const renameOptionElement = await newPage.evaluateHandle((index) => {
-            const menuItems = document.querySelectorAll('.context-menu-item-span');
-            return menuItems[index];
-        }, desiredOptionIndex);
-        await new Promise(resolve => setTimeout(resolve, 5000));
+            if (optionElement) {
+                console.log('Option element found:', desiredOption);
 
-        if (renameOptionElement) {
-            console.log('Option element found.', desiredOption);
-            await new Promise(resolve => setTimeout(resolve, 5000));
-
-
-
-
-
-
-
-            await renameOptionElement.click();
-            console.log(`Clicked on ${desiredOption} option element.`);
-            await new Promise(resolve => setTimeout(resolve, 5000));
+                // Click on the desired option element
+                await optionElement.click();
+                console.log(`Clicked on ${desiredOption} option element.`);
+            } else {
+                console.error(`${desiredOption} option element not found.`);
+            }
         } else {
-            console.error(`${desiredOption} option element not found.`);
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            console.error(`${desiredOption} option not found.`);
         }
-    } else {
-        console.error(`${desiredOption} option not found.`);
-        await new Promise(resolve => setTimeout(resolve, 5000));
-    }
-    console.log('Waiting 10 seconds.');
-    await new Promise(resolve => setTimeout(resolve, 10000)); // Wait for 10 seconds
 
+        console.log('Function fully resolved.');
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
 }
 
 module.exports = copySketchFunction;
