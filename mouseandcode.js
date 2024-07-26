@@ -1,4 +1,5 @@
-// main.js
+// July 25th
+
 const puppeteer = require('puppeteer');
 require('dotenv').config();
 
